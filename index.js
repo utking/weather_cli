@@ -1,5 +1,5 @@
 const config = require('./config');
-const tempplate = require('./template');
+const template = require('./template');
 const program = require('commander');
 const http = require('http');
 const querystring = require('querystring');
@@ -36,7 +36,7 @@ let res = http.get(request, resp => {
       if (verboseMode) {
         console.log(data);
       } else {
-        console.log(tempplate(data));
+        console.log(template(data));
       }
     } catch (e) {
       console.log(new Error(e.message));
