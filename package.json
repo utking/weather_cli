@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/utking/weather_cli/issues"
   },
-  "homepage": "https://github.com/utking/weather_cli#readme"
+  "homepage": "https://github.com/utking/weather_cli#readme",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
 }
