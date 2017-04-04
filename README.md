@@ -22,6 +22,8 @@ module.exports = {
 };
 ```
 
+Add a template.js file (see template.js.sample for details)
+
 ## Usage examples
 
 ```
