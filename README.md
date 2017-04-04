@@ -18,7 +18,8 @@ module.exports = {
   app_id: 'api.openweathermap.org App ID',
   api_host: 'api.openweathermap.org',
   api_path: '/data/2.5/weather',
-  units: 'metric' // or another
+  units: 'metric' // or another,
+  default_city: 'City name'
 };
 ```
 
