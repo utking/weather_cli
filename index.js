@@ -1,4 +1,5 @@
 const config = require('./config');
+const tempplate = require('./template');
 const program = require('commander');
 const http = require('http');
 const querystring = require('querystring');
@@ -35,12 +36,7 @@ let res = http.get(request, resp => {
       if (verboseMode) {
         console.log(data);
       } else {
-        let m = data.main;
-        let output = 
-`Temperature: ${m.temp} C
-Pressure: ${m.pressure} mm
-Temperature min/max: ${m.temp_min}/${m.temp_max} C`;
-        console.log(output);
+        console.log(tempplate(data));
       }
     } catch (e) {
       console.log(new Error(e.message));
