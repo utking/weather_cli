@@ -12,13 +12,14 @@ program
   .parse(process.argv);
 
 const verboseMode = !!program.verbose;
+const cityName = program.args.length ? program.args.pop() : config.default_city;
 
 const request = {
   host: config.api_host,
   path: config.api_path + '?' + querystring.stringify({
     appid: config.app_id,
     units: config.units,
-    q: program.args.pop()
+    q: cityName
   })
 };
 
