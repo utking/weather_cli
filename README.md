@@ -11,19 +11,8 @@ CLI weather app
 $ npm install
 ```
 
-Create a `config.js` exporting an object of the following structure:
-
-```
-module.exports = {
-  app_id: 'api.openweathermap.org App ID',
-  api_host: 'api.openweathermap.org',
-  api_path: '/data/2.5/weather',
-  units: 'metric' // or another,
-  default_city: 'City name'
-};
-```
-
-Add a template.js file (see template.js.sample for details)
+Create a `config.js` (see the config.js.sample for details).
+Create a `template.js` file (see template.js.sample for details).
 
 ## Usage examples
 
