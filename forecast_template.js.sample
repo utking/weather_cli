@@ -1,0 +1,26 @@
+function renderItem(m) {
+  return `== ${m.date.toDateString()} ==
+  Temperature: ${m.temp} \xB0C
+  Pressure: ${m.pressure} mm
+  Humidity: ${m.humidity}%
+  Wind speed: ${m.wind} m/s
+  Weather: ${m.weather}\n`;
+}
+
+module.exports = function template(m) {
+  const tzOffset = -(new Date()).getTimezoneOffset() * 600 * 60;
+  return m.list
+    .filter(d => d.dt_txt.endsWith('06:00:00'))
+    .map(d => {
+      return renderItem({
+        temp: d.main.temp,
+        min_temp: d.main.temp_min,
+        max_temp: d.main.temp_max,
+        pressure: d.main.pressure,
+        humidity: d.main.humidity,
+        weather: d.weather.pop().description,
+        wind: d.wind.speed,
+        date: new Date(d.dt * 1000 + tzOffset)
+      });
+    }).join("\n");
+};
