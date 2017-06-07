@@ -5,6 +5,9 @@ const program = require("commander");
 const http = require("http");
 const querystring = require("querystring");
 
+const Console = require('console').Console;
+const Logger = new Console(process.stdout, process.stderr);
+
 program
   .version("1.0.1")
   .usage("<city_name> [options]")
@@ -38,20 +41,20 @@ let res = http.get(request, (resp) => {
     try {
       let data = JSON.parse(response);
       if (verboseMode) {
-        console.log(data);
+        Logger.log(data);
       } else {
         if (program.forecast) {
-          console.log(forecastTemplate(data));
+          Logger.log(forecastTemplate(data));
         } else {
-          console.log(template(data));
+          Logger.log(template(data));
         }
 
       }
     } catch (e) {
-      console.log(new Error(e.message));
+      Logger.log(new Error(e.message));
     }
   });
 });
 
-res.on("error", (err) => console.log(new Error(err)));
+res.on("error", (err) => { Logger.log(new Error(err)) });
 
