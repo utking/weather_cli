@@ -5,7 +5,7 @@ const program = require("commander");
 const http = require("http");
 const querystring = require("querystring");
 
-const Console = require('console').Console;
+const Console = require("console").Console;
 const Logger = new Console(process.stdout, process.stderr);
 
 program
@@ -56,5 +56,5 @@ let res = http.get(request, (resp) => {
   });
 });
 
-res.on("error", (err) => { Logger.log(new Error(err)) });
+res.on("error", (err) => { Logger.log(new Error(err)); });
 
