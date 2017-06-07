@@ -1,16 +1,16 @@
-const config = require('./config/config');
-const forecastTemplate = require('./templates/forecast_template');
-const template = require('./templates/template');
-const program = require('commander');
-const http = require('http');
-const querystring = require('querystring');
+const config = require("./config/config");
+const forecastTemplate = require("./templates/forecast_template");
+const template = require("./templates/template");
+const program = require("commander");
+const http = require("http");
+const querystring = require("querystring");
 
 program
-  .version('1.0.1')
-  .usage('<city_name> [options]')
-  .option('-f, --forecast', 'Show 5 day forecast')
-  .option('-c, --country [code]', 'Set country code. Default "ru"', 'ru')
-  .option('-v, --verbose', 'Verbose output. Default false')
+  .version("1.0.1")
+  .usage("<city_name> [options]")
+  .option("-f, --forecast", "Show 5 day forecast")
+  .option("-c, --country [code]", "Set country code. Default 'ru'", "ru")
+  .option("-v, --verbose", "Verbose output. Default false")
   .parse(process.argv);
 
 const verboseMode = !!program.verbose;
@@ -19,22 +19,22 @@ const requestPath = (program.forecast ? config.api_forecast_path : config.api_pa
 
 const request = {
   host: config.api_host,
-  path: requestPath + '?' + querystring.stringify({
+  path: requestPath + "?" + querystring.stringify({
     appid: config.app_id,
     units: config.units,
     q: cityName
-  }) + (program.country ? (',' + program.country) : '')
+  }) + (program.country ? ("," + program.country) : "")
 };
 
-let response = '';
-let res = http.get(request, resp => {
+let response = "";
+let res = http.get(request, (resp) => {
   const statusCode = res.statusCode;
 
-  resp.on('data', chunk => {
+  resp.on("data", (chunk) => {
     response += chunk;
   });
 
-  resp.on('end', () => {
+  resp.on("end", () => {
     try {
       let data = JSON.parse(response);
       if (verboseMode) {
@@ -53,5 +53,5 @@ let res = http.get(request, resp => {
   });
 });
 
-res.on('error', err => console.log(new Error(err)));
+res.on("error", (err) => console.log(new Error(err)));
 
