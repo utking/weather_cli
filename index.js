@@ -33,9 +33,7 @@ let response = "";
 let res = http.get(request, (resp) => {
   const statusCode = res.statusCode;
 
-  resp.on("data", (chunk) => {
-    response += chunk;
-  });
+  resp.on("data", (chunk) => response += chunk);
 
   resp.on("end", () => {
     try {
@@ -43,12 +41,7 @@ let res = http.get(request, (resp) => {
       if (verboseMode) {
         Logger.log(data);
       } else {
-        if (program.forecast) {
-          Logger.log(forecastTemplate(data));
-        } else {
-          Logger.log(template(data));
-        }
-
+        Logger.log(program.forecast ? forecastTemplate(data) : template(data));
       }
     } catch (e) {
       Logger.log(new Error(e.message));
