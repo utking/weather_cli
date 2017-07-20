@@ -31,8 +31,6 @@ const request = {
 
 let response = "";
 let res = http.get(request, (resp) => {
-  const statusCode = res.statusCode;
-
   resp.on("data", (chunk) => response += chunk);
 
   resp.on("end", () => {
